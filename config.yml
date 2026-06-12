@@ -3,13 +3,13 @@ token: ""         # Lichess OAuth2 Token.
 engines:
   standard:                               # Engine used for standard chess and when no suitable special engine is configured.
     dir: "./engines"                      # Directory containing the engine.
-    name: "stockfish"             # Binary name of the engine to use.
+    name: "stockfish.exe"             # Binary name of the engine to use.
     ponder: true                          # Think on opponent's time.
     silence_stderr: false                 # Suppresses stderr output.
     move_overhead_multiplier: 1.0         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
     uci_options:                          # Arbitrary UCI options passed to the engine.
-      Threads: 3                          # Max CPU threads the engine can use.
-      Hash: 256                           # Max memory (in megabytes) the engine can allocate.
+      Threads: 2                          # Max CPU threads the engine can use.
+      Hash: 128                           # Max memory (in megabytes) the engine can allocate.
       Move Overhead: 200                  # Increase if your bot flags games too often.
     limits:                               # Limits that end the move calculation early.
 #     time: 5.0                           # Max time per move in seconds.
@@ -181,12 +181,21 @@ challenge:                                # Incoming challenges.
     - rated                               # Rated games
 
 matchmaking:
+  allow_matchmaking: true
   delay: 480                              # Time in seconds the bot must be idle before a new challenge is started.
   timeout: 30                             # Time until a challenge is canceled.
   selection: weighted_random              # Matchmkaing type selection is one of "weighted_random", "sequential" or "cyclic".
   types:                                  # Matchmaking types of which one is selected before each game.
     blitz:                                # Arbitrary name of the matchmaking type. Names must be unique.
       tc: 3+1                             # Time control in initial_minutes+increment_seconds format.
+    bullet_fast:
+      tc: 1+0
+    rapid:
+      tc: 10+5          # например, 10 минут + 5 секунд
+      rated: true       # рейтинговые или нет
+    classical:
+      tc: 30+20         # 30 минут + 20 секунд
+      rated: true
 #   casual_chess960:
 #     tc: 8+1
 #     rated: false
@@ -217,9 +226,9 @@ whitelist:                                # List of users whose challenges are a
 # - Username2
 
 blacklist:                                # List of users who are not challenged and whose challenges are declined.
-- TakticproChess
-- PureDefeat
-- Ctrl_Alt_Destroy
+#- TakticproChess
+#- PureDefeat
+#- Ctrl_Alt_Destroy
 
 online_blacklists:                        # List of URLs for online blacklists. One username per line.
 # - https://raw.githubusercontent.com/xu-shawn/lichess-bots-blocklist/refs/heads/main/blocklist  # Contains most of the bot accounts that use Stockfish.
