@@ -194,7 +194,7 @@ matchmaking:
       tc: 10+5          # например, 10 минут + 5 секунд
       rated: true       # рейтинговые или нет
     classical:
-      tc: 30+20         # 30 минут + 20 секунд
+      tc: 25+0         # 30 минут + 20 секунд
       rated: true
 #   casual_chess960:
 #     tc: 8+1
@@ -217,9 +217,9 @@ messages:
   #   {ram} to insert RAM size
   # Any other words in curly braces will be removed.
   greeting: "Hey, {opponent}! I'm {me} and I'm running {engine}. Good luck, type !help for a list of commands." # Message sent to the opponent at the beginning of a game.
-  goodbye: "Good game, see you next time."                                             # Message sent to the opponent after the end of a game.
+  goodbye: "Good game, see you next time. :)"                                             # Message sent to the opponent after the end of a game.
   greeting_spectators: "Hey, I'm {me} and I'm running {engine}. Type !help for a list of commands." # Message sent to the spectators at the beginning of a game.
-  goodbye_spectators: "Thanks for watching!"                                           # Message sent to the spectators after the end of a game.
+  goodbye_spectators: "Thanks for watching! :)"                                           # Message sent to the spectators after the end of a game.
 
 whitelist:                                # List of users whose challenges are always accepted.
 # - Username1
